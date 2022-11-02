@@ -6,18 +6,95 @@ namespace director
 {
     class Director
     {
-        void main()
+
+        Deck deck = new Deck();
+        bool _isPlaying = true;
+        int _score = 300;   
+
+        string highLow = "-";     
+        
+
+        public Director()
         {
             Console.WriteLine("Welcome to a game of Hilo!");
             Console.WriteLine("You will be given a card, and you must guess if the next card will be higher or lower.");
             Console.WriteLine("If you guess correctly, you earn 100 points. If you guess incorrectly, you lose the 75 points.");
             Console.WriteLine("The game ends when you hit 0 points or decide to quit playing.");
             Console.WriteLine("Good luck!");
+
             
-            Deck deck = new Deck();
-            int[] shuffled_deck = deck.Shuffle();
-            int card_drawn = deck.draw();
-            deck.reset();
+            deck.Shuffle();
+        }
+
+        public void StartGame()
+        {
+            while(_isPlaying)
+            {
+                GetInputs();
+                DoUpdates();
+                DoOutputs();
+            }
+        }
+
+        public void GetInputs()
+        {
+            Console.WriteLine("Draw a Card? (y/n)");
+            string drawCard = Console.ReadLine();
+            _isPlaying = (drawCard == "y");
+
+            if(_isPlaying)
+            {
+                Console.WriteLine("will the next card be higher or lower? (h/l)");
+                highLow = Console.ReadLine();
+            }
+        }
+
+        public void DoUpdates()
+        {
+            if(!_isPlaying)
+            {
+                return;
+            }
+
+            int lastCard = deck.card_drawn;
+            deck.draw();
+            int currentCard = deck.card_drawn;
+
+            if(highLow == "h")
+            {
+                if(currentCard > lastCard)
+                {
+                    _score += 100;
+                }
+                else if(currentCard < lastCard)
+                {
+                    _score -= 75;
+                }
+            }
+            else if(highLow == "l")
+            {
+                if(lastCard > currentCard)
+                {
+                    _score += 100;
+                }
+                else if(lastCard < currentCard)
+                {
+                    _score -= 75;
+                }
+            }
+
+        }
+
+        public void DoOutputs()
+        {
+            if(!_isPlaying)
+            {
+                return;
+            }
+
+            Console.WriteLine($"you drew: {deck.card_drawn}\n");
+            Console.WriteLine($"Your score is: {_score}\n");
+            _isPlaying = (_score >= 0);
         }
         
     }
