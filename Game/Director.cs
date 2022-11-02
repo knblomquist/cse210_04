@@ -56,9 +56,9 @@ namespace director
                 return;
             }
 
-            int lastCard = deck.card_drawn;
-            deck.draw();
-            int currentCard = deck.card_drawn;
+            int lastCard = deck.cardDrawn;
+            deck.Draw();
+            int currentCard = deck.cardDrawn;
 
             if(highLow == "h")
             {
@@ -92,7 +92,7 @@ namespace director
                 return;
             }
 
-            Console.WriteLine($"you drew: {deck.card_drawn}\n");
+            Console.WriteLine($"you drew: {deck.cardDrawn}\n");
             Console.WriteLine($"Your score is: {_score}\n");
             _isPlaying = (_score >= 0);
         }
