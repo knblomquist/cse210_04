@@ -7,7 +7,7 @@ namespace DeckClass
     class Deck
     {
         private List<int> deck = new List<int>();
-        private int cardDrawn;
+        public int cardDrawn;
         private int[] shuffledDeck;
         private int cardIndex = 0;
         
@@ -32,6 +32,11 @@ namespace DeckClass
         {
             cardDrawn = shuffledDeck[cardIndex];
             cardIndex++;
+            if (cardIndex == 52)
+            {
+                Shuffle();
+                cardIndex = 0;
+            }
             return cardDrawn;
         }
         
