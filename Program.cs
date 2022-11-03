@@ -2,7 +2,7 @@ using cse210_02.Game;
 
 namespace cse210_02
 {
-    /// <summary>
+    /// <summarys>
     /// The program's entry point.
     /// </summary>
     class Program
