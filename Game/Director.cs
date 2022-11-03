@@ -39,11 +39,13 @@ namespace cse210_02.Game
         public void GetInputs()
         {
             Console.WriteLine("Draw a Card? (y/n)");
-            string drawCard = Console.ReadLine();
-            _isPlaying = (drawCard == "y");
+            string confirmDrawCard = Console.ReadLine();
+            _isPlaying = (confirmDrawCard == "y");
 
             if(_isPlaying)
             {
+                deck.Draw();
+                Console.WriteLine("Your card is: " + deck.cardDrawn);
                 Console.WriteLine("will the next card be higher or lower? (h/l)");
                 highLow = Console.ReadLine();
             }
@@ -57,7 +59,6 @@ namespace cse210_02.Game
             }
 
             int lastCard = deck.cardDrawn;
-            deck.Draw();
             int currentCard = deck.cardDrawn;
 
             if(highLow == "h")
