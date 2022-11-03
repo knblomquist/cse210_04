@@ -1,8 +1,8 @@
 using System;
-using DeckClass;
 using System.Collections.Generic;
 
-namespace director
+namespace cse210_02.Game
+
 {
     class Director
     {

@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DeckClass
+namespace cse210_02.Game
+
 {
     class Deck
     {
